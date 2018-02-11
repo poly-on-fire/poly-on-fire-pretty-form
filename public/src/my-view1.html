@@ -1,0 +1,87 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-autogrow-textarea/iron-autogrow-textarea.html"/>
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/iron-label/iron-label.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+
+<dom-module id="my-view1">
+  <template>
+    <style is="custom-style" include="shared-styles">
+
+      paper-input {
+        background: #f0f0f0;
+      }
+
+      paper-textarea {
+        background: #f0f0f0;
+      }
+      iron-form {
+        background: #f0f0f0;
+      }
+      input {
+        background: #f0f0f0;
+      }
+    </style>
+
+    <div class="card">
+      <div class="circle">1</div>
+  <h3>My interesting page</h3>
+      <p>There's a lot of data on this page, possibly.</p>
+      <div class="card">
+        <iron-form id="addupdate">
+          <h4>Form that takes input of some type</h4>
+          <form action="/" method="get">
+            <div class="card">
+              <input type="text"></input>
+              <p> This demonstrates one way to visually separate a control that doesn't have validation One could use other ways to acheive validation, such as hiding other divs until this is complete.</p>
+            </div>
+            <div class="card">
+              <paper-input id='day' label="Which day does this go out on? (example: 3)" always-float-label
+                           allowed-pattern="[0-9]"
+                           bind-value="{{dayValue}}" on-change="daySelected" required>
+                <input pattern="\d{5}" value="{{value::input}}">
+              </paper-input>
+              <paper-input class="panel p1" id='subject' label="Email Subject:" always-float-label
+                           on-change="subjectSelected" required>
+              </paper-input>
+              <paper-textarea label="Email Body:" always-float-label required></paper-textarea>
+              <paper-button id="add" on-tap="vd">Add</paper-button>
+            </div>
+          </form>
+        </iron-form>
+      </div>
+      <h4>Note:</h4>
+      <p>I'm back out of the form now, so it's all good. <br><br>This page was pretty much a hack in a lot of ways, there were a lot of more sophisticated approaches not taken due to my ignorance of the syntax and semantics. But at least now some visual logic is guiding the user, which is a start.</p>
+    </div>
+  </template>
+
+  <script>
+    class MyView1 extends Polymer.Element {
+      static get is() {
+        return 'my-view1';
+      }
+
+      vd() {
+        let myForm = this.$.addupdate;
+        console.log("HI" + myForm.validate());
+      }
+    }
+
+    window.customElements.define(MyView1.is, MyView1);
+  </script>
+</dom-module>

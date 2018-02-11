@@ -1,0 +1,7 @@
+{
+  "name": "poly-on-fire-pretty-form",
+  "short_name": "poly-on-fire-pretty-form",
+  "description": "Because I suck at css",
+  "start_url": "/",
+  "display": "standalone"
+}
